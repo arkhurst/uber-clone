@@ -15,7 +15,7 @@ const Interaction  = () => {
 const styles = StyleSheet.create({
     container : {
         height:340,
-        backgroundColor:"whitesmoke", 
+        backgroundColor:"white", 
         shadowColor: '#000',
         shadowOpacity: 0.1,
         shadowOffset: { width: 0, height: 1 },
