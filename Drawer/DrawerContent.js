@@ -30,12 +30,54 @@ const DrawerContent = (props) => {
                 </View>
                
             </View>
+            <View style={{marginTop:15}}>
             <DrawerItem 
-                label="first"
+                label="Your trips"
+                labelStyle={{
+                    fontSize:18,
+                    color:'black',
+                    fontWeight:'400'
+                }}
             />
              <DrawerItem 
-                label="second"
+                label="Payment"
+                labelStyle={{
+                    fontSize:18,
+                    color:'black',
+                    fontWeight:'400'
+                }}
             />
+            <DrawerItem 
+                label="Help"
+                labelStyle={{
+                    fontSize:18,
+                    color:'black',
+                    fontWeight:'400'
+                }}
+            />
+            <DrawerItem 
+                label="Get discounts"
+                labelStyle={{
+                    fontSize:18,
+                    color:'black',
+                    fontWeight:'400'
+                }}
+            />
+            <DrawerItem 
+                label="Settings"
+                labelStyle={{
+                    fontSize:18,
+                    color:'black',
+                    fontWeight:'400'
+                }}
+            />
+             <DrawerItem 
+                label="Legal"
+                labelStyle={{
+                    color:'black'
+                }}
+            />
+            </View>
         </DrawerContentScrollView>    
     );
 };
