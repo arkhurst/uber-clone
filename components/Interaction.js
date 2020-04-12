@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, KeyboardAvoidingView } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const Interaction  = () => {
@@ -7,7 +8,13 @@ const Interaction  = () => {
         <View style={styles.container}>
            <View style={styles.user}>
              <Text style={styles.greeting}>Good morning, Fiifi</Text>
-            </View>
+           </View>
+              <TextInput placeholder="Where to" style={styles.searchbar}>
+                 
+              </TextInput>
+              <TouchableOpacity style={styles.schedule}>
+
+</TouchableOpacity>
         </View>    
     )
 };
@@ -31,6 +38,19 @@ const styles = StyleSheet.create({
         fontWeight:'600',
         fontSize:16
       },
+      searchbar:{
+          backgroundColor:'rgba(0, 0, 0, 0.05)',
+          width:370,
+          height:50,
+          margin:20,
+          paddingHorizontal:20,
+          fontSize:20,
+          flexDirection:'row'
+      },
+      schedule:{
+         
+      }
+
 });
 
 export default Interaction;

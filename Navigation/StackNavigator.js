@@ -1,0 +1,32 @@
+import React from 'react';
+import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import RootNavigator from './RootNavigator';
+import SettingsScreen from '../Drawer/Screens/SettingsScreen';
+
+const Stack = createStackNavigator();
+const StackNavigator = () => {
+    return(
+        <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen 
+                name="Home"
+                component={RootNavigator}
+                options={{
+                    headerShown:false
+                }}
+            />
+            <Stack.Screen
+                name="Settings"
+                component={SettingsScreen}
+                options={{
+                    headerShown:false,
+                    animationEnabled:false
+                }}
+            />
+        </Stack.Navigator>
+        </NavigationContainer>
+    );
+};
+
+export default StackNavigator;
