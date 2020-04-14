@@ -1,20 +1,25 @@
 import React from 'react';
 import { View, StyleSheet, Text, KeyboardAvoidingView } from 'react-native';
 import { TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import {Ionicons} from '@expo/vector-icons';
 
 
-const Interaction  = () => {
+const Interaction  = ({navigation}) => {
     return(
         <View style={styles.container}>
            <View style={styles.user}>
              <Text style={styles.greeting}>Good morning, Fiifi</Text>
            </View>
-              <TextInput placeholder="Where to" style={styles.searchbar}>
-                 
-              </TextInput>
+           <View style={styles.searchbar}>
+              <TouchableOpacity  onPress={() => navigation.navigate('Search')}>
+                  <Text style={{fontSize:19, fontWeight:'bold'}}>Where to</Text>
+              </TouchableOpacity>
               <TouchableOpacity style={styles.schedule}>
-
-</TouchableOpacity>
+                <Ionicons name="ios-time" size={18} />
+                <Text style={{fontWeight:'bold'}}>Now</Text>
+                <Ionicons name="ios-arrow-down" size={18} />
+              </TouchableOpacity>
+           </View>
         </View>    
     )
 };
@@ -45,10 +50,22 @@ const styles = StyleSheet.create({
           margin:20,
           paddingHorizontal:20,
           fontSize:20,
-          flexDirection:'row'
+          flexDirection:'row',
+          justifyContent:'space-between',
+          alignItems:"center"
       },
       schedule:{
-         
+         backgroundColor:'white',
+         shadowColor: '#000',
+         shadowOpacity: 0.1,
+         shadowOffset: { width: 0, height: 1 },
+         height:35,
+         width:100,
+         borderRadius:20,
+         justifyContent:'space-evenly',
+         alignItems:'center',
+         flexDirection:'row'
+
       }
 
 });

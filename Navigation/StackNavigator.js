@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import RootNavigator from './RootNavigator';
 import SettingsScreen from '../Drawer/Screens/SettingsScreen';
+import Search from '../components/Search';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
@@ -19,6 +20,14 @@ const StackNavigator = () => {
             <Stack.Screen
                 name="Settings"
                 component={SettingsScreen}
+                options={{
+                    headerShown:false,
+                    animationEnabled:false
+                }}
+            />
+            <Stack.Screen 
+                name="Search"
+                component={Search}
                 options={{
                     headerShown:false,
                     animationEnabled:false
