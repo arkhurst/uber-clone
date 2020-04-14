@@ -11,7 +11,14 @@ import Interaction from './components/Interaction';
 
 
 export default function Main({navigation}) {
-  const [ location, setLocation ] = React.useState(null);
+  const [ location, setLocation ] = React.useState({
+     region:{
+      latitude: -37.813629,
+      longitude: 144.963058,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421
+     }
+  });
   const [ errorMsg, setErromsg] = React.useState(null);
 
   React.useEffect(() => {
@@ -27,7 +34,17 @@ export default function Main({navigation}) {
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    setLocation(location)
+    // let location2 = await Location.reverseGeocodeAsync(location.coords);
+    // console.log(location2)
+    console.log(location)
+    setLocation({
+      region: {
+        latitude: location.coords.latitude,
+        longitude: location.coords.longitude,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421
+      }
+    })
 
   }
 
@@ -42,12 +59,12 @@ export default function Main({navigation}) {
         <MapView style={styles.map}
           customMapStyle={mapStyle}
           provider={MapView.PROVIDER_GOOGLE}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922/2.5,
-            longitudeDelta: 0.0421/2.5
-          }}
+          showsUserLocation
+          showsBuildings
+          shadowOpacity
+          initialRegion={location.region}
+           region={location.region}
+       
         />
         <Interaction />
         <TouchableOpacity onPress={() => navigation.openDrawer()} style={styles.menu}>
