@@ -42,6 +42,18 @@ const Search = (props) => {
                 </View>
                 </View>
             </View>
+            {/* Location Items */}
+            <View style={styles.locationContainer}>
+              <View style={{flexDirection:'row', height:50}}>
+                 <View style={styles.icon2}>
+                    <Ionicons style={{marginLeft:1}} color="white" name="md-star" size={20} />
+                 </View>
+                 <Text style={{margin:6,marginTop:10, fontWeight:'500'}}>{"Saved Places"}
+                    <Text style={{fontSize:12, color:'grey'}}>{'\nCity'}</Text>
+                 </Text>
+              </View>
+            </View>
+
         </View>
     );
 };
@@ -115,7 +127,26 @@ const styles = StyleSheet.create({
         borderRadius:15,
         alignItems:'center',
         justifyContent:'center'
-    }
+    },
+    locationContainer:{
+        flexDirection:'row',
+        justifyContent:'space-between',
+        paddingHorizontal:20,
+        backgroundColor:'white',
+        alignItems:'center',
+        borderBottomWidth:StyleSheet.hairlineWidth,
+        marginTop:10,
+        borderColor:"#c4c4c4"
+    },
+    icon2:{
+        backgroundColor:'#c4c4c4',
+        width:30,
+        height:30,
+        borderRadius:15,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:8
+    },
 })
 
 export default Search;
