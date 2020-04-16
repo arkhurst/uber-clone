@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text, KeyboardAvoidingView } from 'react-native';
-import { TextInput, TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import {  TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {Ionicons} from '@expo/vector-icons';
 import ScheduleModal from './ScheduleModal';
 
