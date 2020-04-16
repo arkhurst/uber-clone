@@ -13,7 +13,10 @@ import Interaction from './components/Interaction';
 export default function Main({navigation}) {
   const [ location, setLocation ] = React.useState({
      region:{
-    
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
      }
   });
   const [ errorMsg, setErromsg] = React.useState(null);
@@ -60,7 +63,8 @@ export default function Main({navigation}) {
           showsBuildings
           shadowOpacity
           showsPointsOfInterest
-           initialRegion={location.region}
+          initialRegion={location.region}
+          region={location.region}
        
         />
         <Interaction navigation={navigation} />
