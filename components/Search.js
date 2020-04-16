@@ -18,6 +18,10 @@ const Search = (props) => {
                   <Text style={{margin:4}}>For Fiifi</Text>
                 </View>
             </View>
+            <View style={{marginLeft:20,marginTop:20}}>
+                <View style={{width:6, height:6, backgroundColor:"grey", borderRadius:5}}/>
+                <View style={{width:7, height:7, backgroundColor:'black', marginTop:35}}></View>
+            </View>
             {/* Current location */}
             <View style={styles.searchbar}>
                 <Text style={{marginLeft:10, color:'blue'}}>Current Location</Text>
@@ -46,9 +50,9 @@ const Search = (props) => {
             <View style={styles.locationContainer}>
               <View style={{flexDirection:'row', height:50}}>
                  <View style={styles.icon2}>
-                    <Ionicons style={{marginLeft:1}} color="white" name="md-star" size={20} />
+                    <MaterialIcons style={{marginLeft:1}} color="white" name="location-on" size={20} />
                  </View>
-                 <Text style={{margin:6,marginTop:10, fontWeight:'500'}}>{"Saved Places"}
+                 <Text style={{margin:6,marginTop:10, fontWeight:'500'}}>{"Set Location"}
                     <Text style={{fontSize:12, color:'grey'}}>{'\nCity'}</Text>
                  </Text>
               </View>
@@ -86,7 +90,8 @@ const styles = StyleSheet.create({
         fontSize:20,
         flexDirection:'row',
         justifyContent:'space-between',
-        alignItems:"center"
+        alignItems:"center",
+        marginTop:-60
     },
     textInput:{
         backgroundColor:'#e8e8e8',
