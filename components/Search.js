@@ -29,7 +29,8 @@ const Search = (props) => {
                     <MaterialIcons name="add" size={23} />
                </TouchableOpacity>
             </View>
-            <View style={styles.savedPlace}>
+            <View style={{marginTop:20, height:50,  backgroundColor:'white',shadowColor:'#c4c4c4', shadowOpacity:1,shadowOffset:{width:1, height:-5}, shadowRadius:15,   justifyContent:'center'}}>
+                <View style={styles.savedPlace}>
                 <View style={{flexDirection:'row'}}>
                  <View style={styles.icon}>
                     <Ionicons style={{marginLeft:1}} color="white" name="md-star" size={20} />
@@ -38,6 +39,7 @@ const Search = (props) => {
                 </View>
                 <View>
                 <Ionicons color="grey" size={23} name="ios-arrow-forward" />
+                </View>
                 </View>
             </View>
         </View>
@@ -99,10 +101,12 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     savedPlace:{
-        marginTop:20,
         flexDirection:'row',
         justifyContent:'space-between',
         paddingHorizontal:20,
+        backgroundColor:'white',
+        height:35,
+        alignItems:'center',
     },
     icon:{
         backgroundColor:'#c4c4c4',
