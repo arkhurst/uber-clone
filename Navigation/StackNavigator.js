@@ -5,6 +5,7 @@ import RootNavigator from './RootNavigator';
 import SettingsScreen from '../Drawer/Screens/SettingsScreen';
 import PaymentScreen from '../Drawer/Screens/PaymentScreen';
 import Search from '../components/Search';
+import HelpScreen from '../Drawer/Screens/HelpScreen';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
@@ -21,6 +22,14 @@ const StackNavigator = () => {
             <Stack.Screen 
                 name="Payment"
                 component={PaymentScreen}
+                options={{
+                    headerShown:false,
+                    animationEnabled:false
+                }}
+            />
+            <Stack.Screen 
+                name='Help'
+                component={HelpScreen}
                 options={{
                     headerShown:false,
                     animationEnabled:false

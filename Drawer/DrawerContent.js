@@ -49,6 +49,7 @@ const DrawerContent = (props) => {
                 }}
             />
             <DrawerItem 
+                onPress={() => props.navigation.navigate('Home')}
                 label="Help"
                 labelStyle={{
                     fontSize:18,
