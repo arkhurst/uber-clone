@@ -58,6 +58,7 @@ const DrawerContent = (props) => {
                 }}
             />
             <DrawerItem 
+                onPress={() => props.navigation.navigate('Discount')}
                 label="Get discounts"
                 labelStyle={{
                     fontSize:18,
