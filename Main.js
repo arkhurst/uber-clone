@@ -64,7 +64,7 @@ export default function Main({navigation}) {
           shadowOpacity
           showsPointsOfInterest
           initialRegion={location.region}
-          region={location.region}
+          // region={location.region}
        
         />
         <Interaction navigation={navigation} />
