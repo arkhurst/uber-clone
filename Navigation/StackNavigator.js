@@ -7,6 +7,7 @@ import PaymentScreen from '../Drawer/Screens/PaymentScreen';
 import Search from '../components/Search';
 import HelpScreen from '../Drawer/Screens/HelpScreen';
 import Discounts from '../Drawer/Screens/Discounts';
+import Trips from '../Drawer/Screens/Trips';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
@@ -18,6 +19,14 @@ const StackNavigator = () => {
                 component={RootNavigator}
                 options={{
                     headerShown:false
+                }}
+            />
+            <Stack.Screen 
+                name="Trips"
+                component={Trips}
+                options={{
+                    headerShown:false,
+                    animationEnabled:false
                 }}
             />
             <Stack.Screen 

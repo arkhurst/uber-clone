@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet, Text,  } from 'react-native';
 import {  TouchableOpacity, TouchableWithoutFeedback } from 'react-native-gesture-handler';
 import {Ionicons} from '@expo/vector-icons';
 import ScheduleModal from './ScheduleModal';
@@ -8,6 +8,7 @@ import ScheduleModal from './ScheduleModal';
 const Interaction  = ({navigation}) => {
 
   const [visible, setVisible] = React.useState(false);
+
 
   const cancelModal = () => {
     setVisible(false);

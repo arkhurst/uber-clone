@@ -32,6 +32,7 @@ const DrawerContent = (props) => {
             </View>
             <View style={{marginTop:15}}>
             <DrawerItem 
+                onPress={() => props.navigation.navigate('Trips')}
                 label="Your trips"
                 labelStyle={{
                     fontSize:18,
