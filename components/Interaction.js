@@ -8,7 +8,7 @@ import ScheduleModal from './ScheduleModal';
 const Interaction  = ({navigation}) => {
 
   const [visible, setVisible] = React.useState(false);
-
+ 
 
   const cancelModal = () => {
     setVisible(false);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import Constants from 'expo-constants';
