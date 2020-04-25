@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Modal } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Backdrop } from 'react-native-backdrop';
@@ -24,8 +24,8 @@ const ScheduleModal = ({visible, cancelModal}) => {
     };
 
     return(
-        <Backdrop overlayColor='rgba(0,0,0,0.32)' visible={visible}  animationType="slide">
-         
+        <Modal transparent={true} visible={visible}  animationType="slide">
+            <View style={styles.modalView}>
                   <Text style={{ textAlign:'center', fontSize:22, marginTop:4}}>Schedule a trip</Text>
                 <View style={styles.mainViews}>  
                   <Text style={{color:'grey'}}>Thu, 16 Apr</Text>
@@ -55,17 +55,17 @@ const ScheduleModal = ({visible, cancelModal}) => {
                     </TouchableOpacity>
                 </View>
     
-        
-        </Backdrop>
+                </View>
+        </Modal>
     );
 };
 
 const styles = StyleSheet.create({
-    // modalView: {
-    //     marginTop:500,
-    //     backgroundColor: "whitesmoke",
+    modalView: {
+        marginTop:500,
+        backgroundColor: "whitesmoke",
 
-    //   },
+      },
       mainViews:{
           paddingTop:20,
           justifyContent:'center',
