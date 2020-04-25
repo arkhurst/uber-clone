@@ -1,6 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, Dimensions, Button } from 'react-native';
-import { Ionicons,Entypo, Foundation, MaterialIcons, FontAwesome } from '@expo/vector-icons';
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    Dimensions } from 'react-native';
+import { 
+    Ionicons,
+    Entypo, 
+    Foundation, 
+    MaterialIcons, 
+    FontAwesome } from '@expo/vector-icons';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 
 const winHeight = Dimensions.get('window').height
