@@ -4,6 +4,8 @@ import MapView from 'react-native-maps';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import LottieView from 'lottie-react-native';
+import * as Loading from './assets/20307-location-pin-loop.json';
 
 import { Ionicons } from '@expo/vector-icons';
 
@@ -84,8 +86,14 @@ class Main extends React.Component {
 
         {!showMap && (
           <View style={styles.containerNoLocation}>
+            <LottieView 
+              source={Loading}
+              autoPlay
+              loop
+              style={{width:100,height:100}}
+            />
             <Text style={styles.textLocationNeeded}>
-              {'Picking up your location\n We need your location data...'}
+              {'Getting Location...\nWe need your location data'}
             </Text>
           </View>
         )}
