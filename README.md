@@ -3,6 +3,16 @@ End Semester Project - CSCD 322
 Simple Uber App Clone with react-native-maps & Expo
 
 # installation
-npm install
+
+yarn add
 
 # enjoy 🎉
+
+# release notes
+# version 0.0.1 (current)
+* Expo
+* React Hooks
+* React Navigation 5
+* Drawer w/ React Navigation
+* Modal
+* MapView
