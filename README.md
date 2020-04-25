@@ -16,3 +16,7 @@ yarn add
 * Drawer w/ React Navigation
 * Modal
 * MapView
+* Lottie files
+
+# issues
+customized some features with my own discretion
