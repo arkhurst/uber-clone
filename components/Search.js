@@ -44,7 +44,7 @@ const Search = props => {
       </View>
       {/* Where to */}
       <View style={{ flexDirection: 'row' }}>
-      <GoogleAutoComplete apiKey={API_KEY} debounce={500} minLength={3}>
+      <GoogleAutoComplete apiKey="AIzaSyBRky06qi2swaZZAvrBmABYMpwct34widQ" debounce={500} minLength={3}>
           {({
             handleTextChange,
             locationResults,
