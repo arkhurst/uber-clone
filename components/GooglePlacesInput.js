@@ -17,7 +17,7 @@ const GooglePlacesInput = () => {
         <GooglePlacesAutocomplete 
            placeholder='Search'
            placeholderTextColor='#333'
-           onPress={}
+         
            query={{
                key:'AIzaSyBRky06qi2swaZZAvrBmABYMpwct34widQ',
                language:'en',
