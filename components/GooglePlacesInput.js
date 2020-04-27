@@ -1,85 +1,27 @@
-import React, { useState } from 'react';
-import {  Platform } from 'react-native';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import React, { PureComponent } from 'react';
+import { View, Alert, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
-const GooglePlacesInput = () => {
+class LocationItem extends PureComponent {
+  _handlePress = async () => {
+    const res = await this.props.fetchDetails(this.props.place_id)
+    console.log('result', res)
+  }
 
-    const [ searchFocused, setSearchFocused ] = useState(false);
-
-    const _onFocus = () => {
-        setSearchFocused(true)
-    }
-
-    const _onBlur = () => {
-        setSearchFocused(false)
-    }
-    return(
-        <GooglePlacesAutocomplete 
-           placeholder='Search'
-           placeholderTextColor='#333'
-         
-           query={{
-               key:'AIzaSyBRky06qi2swaZZAvrBmABYMpwct34widQ',
-               language:'en',
-               type:'(cities)'
-           }}
-           textInputProps={{
-               onFocus: _onFocus,
-               onBlur: _onBlur,
-               autoCapitalize:'none',
-               autoCorrect:false
-           }}
-           listViewDisplayed={searchFocused}
-           fetchDetails
-           enablePoweredByContainer={false}
-           currentLocation={true}
-           currentLocationLabel="Current location"
-           nearbyPlacesAPI='GooglePlacesSearch'
-           styles={{
-            container:{
-                position: 'absolute',
-                top: Platform.select({ ios: 60, android: 40}),
-                width:'100%'
-            },
-            textInputContainer:{
-                flex:1,
-                backgroundColor:'transparent',
-                height:54,
-                marginHorizontal:20,
-                borderTopWidth:0,
-                borderBottomWidth:0
-            },
-            textInput:{
-                height:54,
-                paddingLeft:20,
-                paddingRight:20,
-                elevation:5,
-                shadowColor:'#000',
-                shadowOpacity:0.1,
-                shadowRadius:15,
-                borderWidth:1,
-                borderColor:'#ddd',
-                fontSize:18
-            },
-            listView:{
-                borderWidth:1,
-                borderColor:'#ddd',
-                backgroundColor:'#fff',
-                marginHorizontal:20,
-                shadowOpacity:0.1,
-                shadowRadius:15,
-            },
-            description:{
-                fontSize:16
-            },
-            row:{
-                padding:20,
-                height:58
-            }
-           }}
-        />
+  render() {
+    return (
+      <TouchableOpacity style={styles.root} onPress={this._handlePress}>
+        <Text>{this.props.description}</Text>
+      </TouchableOpacity>
     );
-};
+  }
+}
 
+const styles = StyleSheet.create({
+  root: {
+    height: 40,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    justifyContent: 'center'
+  }
+})
 
-export default GooglePlacesInput;
+export default LocationItem;

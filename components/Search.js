@@ -1,9 +1,10 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet,ActivityIndicator } from 'react-native';
 import { Ionicons, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
-import GooglePlacesInput from './GooglePlacesInput';
+import { GoogleAutoComplete } from 'react-native-google-places-autocomplete';
+import LocationItem from './GooglePlacesInput';
 
 const Search = props => {
   return (
@@ -43,8 +44,39 @@ const Search = props => {
       </View>
       {/* Where to */}
       <View style={{ flexDirection: 'row' }}>
-        {/* <TextInput placeholder="Where to?" style={styles.textInput} /> */}
-        <GooglePlacesInput />
+      <GoogleAutoComplete apiKey={API_KEY} debounce={500} minLength={3}>
+          {({
+            handleTextChange,
+            locationResults,
+            fetchDetails,
+            isSearching,
+            inputValue,
+            clearSearchs
+          }) => (
+            <React.Fragment>
+              <View style={styles.inputWrapper}>
+                <TextInput
+                  style={styles.textInput}
+                  placeholder="Search a places"
+                  onChangeText={handleTextChange}
+                  value={inputValue}
+                />
+                <Button title="Clear" onPress={clearSearchs} />
+              </View>
+              {isSearching && <ActivityIndicator size="large" color="red" />}
+              <ScrollView>
+                {locationResults.map(el => (
+                  <LocationItem
+                    {...el}
+                    key={el.id}
+                    fetchDetails={fetchDetails}
+                  />
+                ))}
+              </ScrollView>
+            </React.Fragment>
+          )}
+        </GoogleAutoComplete>
+      
         <TouchableOpacity style={styles.add}>
           <MaterialIcons name="add" size={23} />
         </TouchableOpacity>
