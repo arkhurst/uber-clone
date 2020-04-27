@@ -10,7 +10,7 @@ import {
 import { Ionicons } from '@expo/vector-icons';
 import ScheduleModal from './ScheduleModal';
 
-const Interaction = ({ navigation }) => {
+const Interaction = ({ navigation, state }) => {
   const [visible, setVisible] = React.useState(false);
 
   const cancelModal = () => {

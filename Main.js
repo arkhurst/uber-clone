@@ -75,7 +75,7 @@ class Main extends React.Component {
               shadowOpacity
               showsPointsOfInterest
             />
-            <Interaction navigation={navigation} />
+            <Interaction navigation={navigation} state={state} />
             <TouchableOpacity
               style={styles.menu}
               onPress={() => navigation.toggleDrawer()}>

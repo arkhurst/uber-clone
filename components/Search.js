@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import { Ionicons, FontAwesome5, MaterialIcons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
+import GooglePlacesInput from './GooglePlacesInput';
 
 const Search = props => {
   return (
@@ -42,7 +43,8 @@ const Search = props => {
       </View>
       {/* Where to */}
       <View style={{ flexDirection: 'row' }}>
-        <TextInput placeholder="Where to?" style={styles.textInput} />
+        {/* <TextInput placeholder="Where to?" style={styles.textInput} /> */}
+        <GooglePlacesInput />
         <TouchableOpacity style={styles.add}>
           <MaterialIcons name="add" size={23} />
         </TouchableOpacity>
@@ -74,7 +76,7 @@ const Search = props => {
             <Ionicons color="grey" size={23} name="ios-arrow-forward" />
           </View>
         </View>
-      </View>
+      </View> 
       {/* Location Items */}
       <View style={styles.locationContainer}>
         <View style={{ flexDirection: 'row', height: 50 }}>
