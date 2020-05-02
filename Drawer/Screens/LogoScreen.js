@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { StyleSheet, Text, View, Dimensions } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
 import Logo from "../../components/LogoComponent";
 import Animated, {
   useCode,
@@ -8,24 +8,38 @@ import Animated, {
   set,
   interpolate,
 } from "react-native-reanimated";
-import { withTimingTransition } from "react-native-redash";
+import { withTimingTransition, onGestureEvent, withSpringTransition } from "react-native-redash";
 import { SCREEN_HEIGHT, LOGIN_VIEW_HEIGHT } from "../../utils/Constants";
+import { TextInput, TapGestureHandler, State } from "react-native-gesture-handler";
 
 
 export default function LogoScreen() {
   const scale = useRef(new Animated.Value(0));
   const scaleAnimation = withTimingTransition(scale.current);
 
-  // const translateY = interpolate(scaleAnimation, {
-  //   inputRange: [0, 1],
-  //   outputRange: [SCREEN_HEIGHT, SCREEN_HEIGHT - LOGIN_VIEW_HEIGHT],
-  // });
 
-  const innerLoginY = interpolate(scaleAnimation, {
+
+ const innerLoginY = interpolate(scaleAnimation, {
     inputRange: [0, 1],
     outputRange: [LOGIN_VIEW_HEIGHT, 0],
   });
 
+  const gestureState = useRef(new Animated.Value(State.UNDETERMINED));
+  const gestureHandler = onGestureEvent({ state: gestureState.current });
+
+  const isOpen = useRef(new Animated.Value(0));
+  const isOpenAnimation = withSpringTransition(isOpen.current);
+
+  const outerLoginY = interpolate(isOpenAnimation, {
+    inputRange: [0, 1],
+    outputRange: [SCREEN_HEIGHT - LOGIN_VIEW_HEIGHT, 0],
+  });
+
+  useCode(() =>
+    cond(eq(gestureState.current, State.END), [
+      cond(eq(isOpen.current, 0), set(isOpen.current, 1)),
+    ]),
+  );
   useCode(() => cond(eq(scale.current, 0), set(scale.current, 1)), []);
 
   return (
@@ -37,7 +51,7 @@ export default function LogoScreen() {
         style={{
           backgroundColor: "white",
           ...StyleSheet.absoluteFill,
-          transform: [{ translateY: SCREEN_HEIGHT - LOGIN_VIEW_HEIGHT }],
+          transform: [{ translateY: outerLoginY }],
         }}
       >
         <Animated.View
@@ -59,14 +73,23 @@ export default function LogoScreen() {
           <Animated.View
             style={{
               height: LOGIN_VIEW_HEIGHT,
-              alignItems: "center",
-              justifyContent: "center",
               backgroundColor: "white",
               borderWidth: 1,
               transform: [{ translateY: innerLoginY }],
             }}
           >
-            <Text>Login View</Text>
+            <Animated.View style={{...styles.heading}}>
+              <Text style={{fontSize:24}}>Getting moving with Uber</Text>
+            </Animated.View>
+           <TapGestureHandler {...gestureHandler}>
+             <Animated.View  >
+            <Animated.View pointerEvents="none" style={{...styles.textInputContainer}}>
+                <Image style={{...styles.image}} source={require('../../assets/flag.png')} />
+                  <Text style={{...styles.number}}>+233</Text>
+                  <TextInput keyboardType="number-pad" style={{...styles.textInput}} placeholder="Enter your mobile number" />
+            </Animated.View>
+            </Animated.View>
+           </TapGestureHandler>
           </Animated.View>
         </Animated.View>
       </Animated.View>
@@ -84,4 +107,26 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  heading:{
+    alignItems:'flex-start',
+    marginHorizontal:25,
+    marginTop:50
+  },
+  image:{
+    height:29,
+    width:29, 
+    resizeMode:'contain'
+  },
+  number:{
+    fontSize:20,
+    paddingHorizontal:10
+  },
+  textInput:{
+    flex:1,
+    fontSize:20
+  },
+  textInputContainer:{
+    flexDirection:'row',
+     margin:25
+  }
 });
