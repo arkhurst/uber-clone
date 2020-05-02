@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { StyleSheet, Text, View, Dimensions, Image } from "react-native";
+import { StyleSheet, Text, View, Dimensions, Image, Button } from "react-native";
 import Logo from "../../components/LogoComponent";
 import Animated, {
   useCode,
@@ -7,13 +7,15 @@ import Animated, {
   eq,
   set,
   interpolate,
+  SpringUtils
 } from "react-native-reanimated";
 import { withTimingTransition, onGestureEvent, withSpringTransition } from "react-native-redash";
 import { SCREEN_HEIGHT, LOGIN_VIEW_HEIGHT } from "../../utils/Constants";
 import { TextInput, TapGestureHandler, State } from "react-native-gesture-handler";
+import OverlayBg from "../../components/OverLayBg";
 
 
-export default function LogoScreen() {
+export default function LogoScreen({navigation}) {
   const scale = useRef(new Animated.Value(0));
   const scaleAnimation = withTimingTransition(scale.current);
 
@@ -28,11 +30,15 @@ export default function LogoScreen() {
   const gestureHandler = onGestureEvent({ state: gestureState.current });
 
   const isOpen = useRef(new Animated.Value(0));
-  const isOpenAnimation = withSpringTransition(isOpen.current);
+  const isOpenAnimation = withSpringTransition(isOpen.current,{
+    ...SpringUtils.makeDefaultConfig,
+    overshootClamping: true,
+    damping: new Animated.Value(20),
+  });
 
   const outerLoginY = interpolate(isOpenAnimation, {
     inputRange: [0, 1],
-    outputRange: [SCREEN_HEIGHT - LOGIN_VIEW_HEIGHT, 0],
+    outputRange: [SCREEN_HEIGHT - LOGIN_VIEW_HEIGHT, LOGIN_VIEW_HEIGHT/2],
   });
 
   useCode(() =>
@@ -54,27 +60,13 @@ export default function LogoScreen() {
           transform: [{ translateY: outerLoginY }],
         }}
       >
-        <Animated.View
-          style={{
-            height: LOGIN_VIEW_HEIGHT,
-            alignItems: "center",
-            justifyContent: "center",
-            backgroundColor: "#2289d6",
-            position: "absolute",
-            top: 0,
-            left: 0,
-            right: 0,
-            borderWidth: 1,
-          }}
-        >
-          <Text>Overlay Bg</Text>
-        </Animated.View>
+       <OverlayBg isOpenAnimation={isOpenAnimation} />
         <Animated.View>
           <Animated.View
             style={{
               height: LOGIN_VIEW_HEIGHT,
               backgroundColor: "white",
-              borderWidth: 1,
+          
               transform: [{ translateY: innerLoginY }],
             }}
           >
@@ -88,6 +80,7 @@ export default function LogoScreen() {
                   <Text style={{...styles.number}}>+233</Text>
                   <TextInput keyboardType="number-pad" style={{...styles.textInput}} placeholder="Enter your mobile number" />
             </Animated.View>
+            <Button title="go" onPress={() => navigation.navigate('Home')} />
             </Animated.View>
            </TapGestureHandler>
           </Animated.View>
