@@ -11,12 +11,20 @@ import Search from '../components/Search';
 import HelpScreen from '../Drawer/Screens/HelpScreen';
 import Discounts from '../Drawer/Screens/Discounts';
 import Trips from '../Drawer/Screens/Trips';
+import LogoScreen from '../Drawer/Screens/LogoScreen';
 
 const Stack = createStackNavigator();
 const StackNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen 
+          name="Login"
+          component={LogoScreen}
+          options={{
+            headerShown:false
+          }}
+        />
         <Stack.Screen
           name="Home"
           component={RootNavigator}

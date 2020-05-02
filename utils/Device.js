@@ -21,6 +21,12 @@ if (iOS) {
   }
 }
 
+const TEXT_INPUT_HEIGHT = 150
+const FOOTER_HEIGHT = 70
+
+const LOGIN_VIEW_HEIGHT = TEXT_INPUT_HEIGHT + FOOTER_HEIGHT
+
+
 export default {
   android,
   aspectRatio,
@@ -30,4 +36,8 @@ export default {
   iPhoneX,
   isPad,
   web,
+  TEXT_INPUT_HEIGHT,
+  FOOTER_HEIGHT,
+  LOGIN_VIEW_HEIGHT
+
 };
