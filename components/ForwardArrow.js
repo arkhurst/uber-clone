@@ -3,7 +3,9 @@ import { View, StyleSheet } from 'react-native';
 import Animated, { interpolate } from 'react-native-reanimated';
 import { Ionicons } from '@expo/vector-icons'
 import { LOGIN_VIEW_HEIGHT } from '../utils/Constants';
-import { TapGestureHandler } from 'react-native-gesture-handler';
+import { TapGestureHandler, TouchableOpacity } from 'react-native-gesture-handler';
+
+
 
 export default function ForwardArrow({keyboardHeight, navigation}){
 
@@ -11,6 +13,8 @@ export default function ForwardArrow({keyboardHeight, navigation}){
         inputRange:[0, keyboardHeight],
         outputRange:[0,1]
     })
+
+    const AnimatedTouchable = Animated.createAnimatedComponent(TouchableOpacity);
     return(
         
         <Animated.View 
@@ -18,7 +22,9 @@ export default function ForwardArrow({keyboardHeight, navigation}){
                 ...styles.fowardArrow, 
                 opacity,
                 transform:[{ translateY:keyboardHeight}]}}>
+                    <AnimatedTouchable onPress={() => navigation.navigate('Home')}>
                 <Ionicons name="md-arrow-forward" color="white" size={23} />
+                </AnimatedTouchable>
         </Animated.View>
        
     );

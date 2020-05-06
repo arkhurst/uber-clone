@@ -85,7 +85,8 @@ export default function LogoScreen({ navigation }) {
     inputRange: [0, 1],
     outputRange: [1, 0],
   });
-
+ 
+  
   // Javascript thread
   const focusTextInput = () => {
     // focus the textInput
@@ -154,7 +155,7 @@ export default function LogoScreen({ navigation }) {
           transform: [{ translateY: outerLoginY }],
         }}>
         <OverlayBg isOpenAnimation={isOpenAnimation} />
-        <ForwardArrow keyboardHeight={keyboardHeight} />
+        <ForwardArrow navigation={navigation} keyboardHeight={keyboardHeight} />
         <Animated.View>
           <Animated.View
             style={{
