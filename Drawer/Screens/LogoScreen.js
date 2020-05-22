@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect,useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -31,6 +31,7 @@ import {
   TapGestureHandler,
   State,
 } from 'react-native-gesture-handler';
+import CountryPicker from 'react-native-country-picker-modal';
 import OverlayBg from '../../components/OverLayBg';
 import HeaderBack from '../../components/HeaderBack';
 import AnimatedTextPlaceHolder from '../../components/AnimatedTextInput';
@@ -38,9 +39,25 @@ import ForwardArrow from '../../components/ForwardArrow';
 
 export default function LogoScreen({ navigation }) {
 
+  const [countryCode, setCountryCode] = useState('GH')
+  const [country, setCountry] = useState("Ghana")
+  const [withCountryNameButton, setWithCountryNameButton] = useState(false )
+ 
+  const [withFlag, setWithFlag] = useState(true)
+  const [withEmoji, setWithEmoji] = useState(true)
+  const [withFilter, setWithFilter] = useState(true)
+  const [withAlphaFilter, setWithAlphaFilter] = useState(false)
+  const [withCallingCode, setWithCallingCode] = useState(false)
+
+  const onSelect = (country) => {
+      setCountryCode(country.cca2)
+      setCountry(country)
+  }
+
   const scale = useRef(new Animated.Value(0));
   const scaleAnimation = withTimingTransition(scale.current);
   const textInputRef = useRef(null);
+
 
   const keyboardHeight = new Animated.Value(0)
 
@@ -86,7 +103,7 @@ export default function LogoScreen({ navigation }) {
     outputRange: [1, 0],
   });
  
-  
+
   // Javascript thread
   const focusTextInput = () => {
     // focus the textInput
@@ -169,15 +186,26 @@ export default function LogoScreen({ navigation }) {
               <Text style={{ fontSize: 24 }}>Getting moving with Uber</Text>
             </Animated.View>
             <TapGestureHandler {...gestureHandler}>
-              <Animated.View>
+              <Animated.View> 
                 <Animated.View
                   pointerEvents="none"
                   style={{ ...styles.textInputContainer }}>
                   <AnimatedTextPlaceHolder isOpenAnimation={isOpenAnimation} />
-                  <Image
-                    style={{ ...styles.image }}
-                    source={require('../../assets/flag.png')}
-                  />
+                  <CountryPicker
+                    {...{
+                      countryCode,
+                      country,
+                      withFilter,
+                      withFlag,
+                      withCountryNameButton,
+                      withAlphaFilter,
+                      withCallingCode,
+                      withEmoji,
+                      onSelect: (value, num=1) => onSelect(value,num),
+                  
+                    }}
+                   
+                />
                   <Text style={{ ...styles.number }}>+233</Text>
                   <TextInput
                     ref={textInputRef}
@@ -219,6 +247,7 @@ const styles = StyleSheet.create({
   number: {
     fontSize: 20,
     paddingHorizontal: 10,
+    paddingTop:7
   },
   textInput: {
     flex: 1,
